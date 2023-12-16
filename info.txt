@@ -1,0 +1,4 @@
+after parsing the giveing line int date and value;
+
+what's next:
+	parsing the date and getting each value.
