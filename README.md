@@ -22,3 +22,7 @@ It contains the followinig classes and functions:
 - `int dateCmp(Date d1, Date d2)`
 - `t_ld getTimeReference(void)`
 - `t_ld getTimeToReference(t_ld reference)`
+---
+## Usage ##
+- Run The following shell command :
+- `make or make all`
