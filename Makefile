@@ -5,7 +5,7 @@
 #  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 #  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 #  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2023/12/13 18:56:44 by oezzaou
-#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/26 18:55:00 by oezzaou
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/27 09:33:49 by oezzaou
 #  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 #  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 #  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -13,21 +13,21 @@
 #  ⠀⠀⠀⠀⠀⠘⠄⣀⡀⠸⠓⠀⠀⠀⠠⠟⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀                                              
 
 #====<[ CC compiler: ]>=========================================================
-CC					:= g++
+CC					:= c++
 CPPFLAGS		:= -Wall -Wextra -Werror -std=c++98
 RM					:= rm -rf
 
 #====< Sources >================================================================
-PROJECT					:= ParserLib
-NAME_STATIC_LIB	:= libprs.a 
-# NAME_SHARED_LIB	:= libprs.so 
+PROJECT			:= ParserLib
+STATIC_LIB	:= libprs.a 
+SHARED_LIB	:= libprs.so 
 
-OBJ_DIR					:= obj
-SRC_DIR					:= src
-INCLUDE					:= -Iinclude
+OBJ_DIR			:= obj
+SRC_DIR			:= src
+INCLUDE			:= -Iinclude
 
-SRC							:= $(wildcard */*.cpp)
-OBJ							:= $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SRC)))
+SRC					:= $(wildcard */*.cpp)
+OBJ					:= $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(notdir $(SRC)))
 
 #====<[ Colors: ]>==============================================================
 GREEN					= \033[1;32m
@@ -54,10 +54,7 @@ LIGHT_BLUE		= \033[38;5;45m
 RESET					= \033[1;0m
 
 #====< Rules >==================================================================
-all: signature $(NAME_STATIC_LIB)
-
-$(NAME_STATIC_LIB): $(OBJ)
-	@ar rcs $@ $^  
+all: signature $(STATIC_LIB) $(SHARED_LIB)
 	@test | awk '\
 		BEGIN {\
 		for (i=0; i < 70; i++){\
@@ -65,7 +62,13 @@ $(NAME_STATIC_LIB): $(OBJ)
 			system("sleep 0.01");\
 		}\
 	} END{printf "\n"}'
-	@echo "${GREEN}[OK] ${CYAN}$@ ✔️${RESET}"
+	@echo "${GREEN}[OK] ${CYAN}$(filter-out $<, $^) ✔️${RESET}"
+
+$(STATIC_LIB): $(OBJ)
+	@ar rcs $@ $^  
+
+$(SHARED_LIB): $(OBJ)
+	@$(CC) $(CPPFLAGS) -shared -o $@ $^  
 
 signature:
 	@printf "${GRAY}%19s${RESET}\n"	"𓆩♕𓆪"
@@ -89,20 +92,28 @@ clean:
 	fi
 
 fclean: clean
-	@if [ -f $(NAME_STATIC_LIB) ]; then\
-		${RM} $(NAME_STATIC_LIB);\
+	@if [ -f $(STATIC_LIB) ]; then\
+		${RM} $(STATIC_LIB);\
 		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-33s${RESET}| ./%s\n"\
-					 "... " "$(PROJECT)/$(NAME_STATIC_LIB) ✔️";\
-	else\
+				 "... " "$(PROJECT)/$(STATIC_LIB) ✔️";\
+	elif [ ! -f $(STATIC_LIB) ]; then\
 		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-33s${RESET}| ./%s\n"\
-					 "..." "$(PROJECT)/$(NAME_STATIC_LIB) ✖️";\
+					 "..." "$(PROJECT)/$(STATIC_LIB) ✖️";\
+	fi
+	@if [ -f $(SHARED_LIB) ]; then\
+		${RM} $(SHARED_LIB);\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-33s${RESET}| ./%s\n"\
+				 "... " "$(PROJECT)/$(SHARED_LIB) ✔️";\
+	elif [ ! -f $(SHARED_LIB) ]; then\
+		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-33s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(SHARED_LIB) ✖️";\
 	fi
 
 re: fclean all
 
 .create_dir: $(OBJ_DIR)
 
-.SUFFIXES: .o .cpp .tpp 
+.SUFFIXES: .o .cpp .tpp .a .so 
 
 .PHONY: all clean fclean re signature
 #===============================================================================
