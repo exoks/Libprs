@@ -5,7 +5,7 @@
 #  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 #  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 #  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2023/12/13 18:56:44 by oezzaou
-#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/28 11:21:15 by oezzaou
+#  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/28 11:33:30 by oezzaou
 #  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 #  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 #  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -53,79 +53,79 @@ LIGHT_WHITE  	= \033[97m
 LIGHT_BLUE		= \033[38;5;45m
 RESET					= \033[1;0m
 
-#====<[ rules: ]>===============================================================
+#====<[ Rules: ]>===============================================================
 all: static 
 
-static: signature $(static_lib)
+static: signature $(STATIC_LIB)
 
-shared: signature $(shared_lib)
+shared: signature $(SHARED_LIB)
 
-$(static_lib): $(obj)
+$(STATIC_LIB): $(OBJ)
 	@ar rcs $@ $^  
 	@test | awk '\
-		begin {\
+		BEGIN {\
 		for (i=0; i < 70; i++){\
-			printf("$(green)▇$(end)");\
+			printf("$(GREEN)▇$(END)");\
 			system("sleep 0.01");\
 		}\
-	} end{printf "\n"}'
-	@echo "${green}[ok] ${cyan}$(static_lib) ✔️${reset}"
+	} END{printf "\n"}'
+	@echo "${GREEN}[OK] ${CYAN}$(STATIC_LIB) ✔️${RESET}"
 
-$(shared_lib): $(obj)
-	@$(cc) $(cppflags) -shared -o $@ $^  
+$(SHARED_LIB): $(OBJ)
+	@$(CC) $(CPPFLAGS) -shared -o $@ $^  
 	@test | awk '\
-		begin {\
+		BEGIN {\
 		for (i=0; i < 70; i++){\
-			printf("$(green)▇$(end)");\
+			printf("$(GREEN)▇$(END)");\
 			system("sleep 0.01");\
 		}\
-	} end{printf "\n"}'
-	@echo "${green}[ok] ${cyan}$(shared_lib) ✔️${reset}"
+	} END{printf "\n"}'
+	@echo "${GREEN}[OK] ${CYAN}$(SHARED_LIB) ✔️${RESET}"
 
 signature:
-	@printf "${gray}%19s${reset}\n"	"𓆩♕𓆪"
-	@printf "${gray}%s${reset}\n"		"𓄂 oussama ezzaou"
+	@printf "${GRAY}%19s${RESET}\n"	"𓆩♕𓆪"
+	@printf "${GRAY}%s${RESET}\n"		"𓄂 oussama ezzaou"
 
-$(obj_dir)/%.o: $(src_dir)/%.cpp | .create_dir 
-	@$(cc) $(cppflags) $(include) -fpic -c $< -o $@
-	@printf "$(green)[ok]${reset} ${pink}compiling${reset} %-33s| $@\n" "$<"
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | .create_dir 
+	@$(CC) $(CPPFLAGS) $(INCLUDE) -fPIC -c $< -o $@
+	@printf "$(GREEN)[OK]${RESET} ${PINK}Compiling${RESET} %-33s| $@\n" "$<"
 
-$(obj_dir):
+$(OBJ_DIR):
 	@mkdir -p $@
 
 clean:
-	@if [ -d $(obj_dir) ]; then\
-		${rm} $(obj_dir);\
-		printf "${green}[ok]${reset} ${orange}cleaning  %-33s${reset}| ./%s\n"\
-					 "... " "$(project)/$(obj_dir) ✔️";\
+	@if [ -d $(OBJ_DIR) ]; then\
+		${RM} $(OBJ_DIR);\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-33s${RESET}| ./%s\n"\
+					 "... " "$(PROJECT)/$(OBJ_DIR) ✔️";\
 	else\
-		printf "${red}[ko]${reset} ${blue}not found %-33s${reset}| ./%s\n"\
-					 "..." "$(project)/$(obj_dir) ✖️";\
+		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-33s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(OBJ_DIR) ✖️";\
 	fi
 
 fclean: clean
-	@if [ -f $(static_lib) ]; then\
-		${rm} $(static_lib);\
-		printf "${green}[ok]${reset} ${orange}cleaning  %-33s${reset}| ./%s\n"\
-				 "... " "$(project)/$(static_lib) ✔️";\
-	elif [ ! -f $(static_lib) ]; then\
-		printf "${red}[ko]${reset} ${blue}not found %-33s${reset}| ./%s\n"\
-					 "..." "$(project)/$(static_lib) ✖️";\
+	@if [ -f $(STATIC_LIB) ]; then\
+		${RM} $(STATIC_LIB);\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-33s${RESET}| ./%s\n"\
+				 "... " "$(PROJECT)/$(STATIC_LIB) ✔️";\
+	elif [ ! -f $(STATIC_LIB) ]; then\
+		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-33s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(STATIC_LIB) ✖️";\
 	fi
-	@if [ -f $(shared_lib) ]; then\
-		${rm} $(shared_lib);\
-		printf "${green}[ok]${reset} ${orange}cleaning  %-33s${reset}| ./%s\n"\
-				 "... " "$(project)/$(shared_lib) ✔️";\
-	elif [ ! -f $(shared_lib) ]; then\
-		printf "${red}[ko]${reset} ${blue}not found %-33s${reset}| ./%s\n"\
-					 "..." "$(project)/$(shared_lib) ✖️";\
+	@if [ -f $(SHARED_LIB) ]; then\
+		${RM} $(SHARED_LIB);\
+		printf "${GREEN}[OK]${RESET} ${ORANGE}Cleaning  %-33s${RESET}| ./%s\n"\
+				 "... " "$(PROJECT)/$(SHARED_LIB) ✔️";\
+	elif [ ! -f $(SHARED_LIB) ]; then\
+		printf "${RED}[KO]${RESET} ${BLUE}Not Found %-33s${RESET}| ./%s\n"\
+					 "..." "$(PROJECT)/$(SHARED_LIB) ✖️";\
 	fi
 
 re: fclean all
 
-.create_dir: $(obj_dir)
+.create_dir: $(OBJ_DIR)
 
-.suffixes: .o .cpp .tpp .a .so 
+.SUFFIXES: .o .cpp .tpp .a .so 
 
-.phony: all static shared clean fclean re signature
+.PHONY: all static shared clean fclean re signature
 #===============================================================================
