@@ -1,4 +1,4 @@
-# Parser Lib #
+# Libprs: Lib parser #
 ParserLib is a tiny parsing library that i have created during my 1337 cursus,
 It contains the followinig classes and functions:
 
