@@ -5,7 +5,7 @@
 //  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 //  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 //  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2024/04/02 23:09:19 by oezzaou
-//  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/27 13:42:43 by oezzaou
+//  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/03/02 09:01:32 by oezzaou
 //  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 //  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 //  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -32,18 +32,18 @@ typedef enum	e_type
 	POSITIVE,
 	NEGATIVE,
 	MIXED
-}				Type;
+}				      Type;
 
 //====<[ Namespace: prs ]>======================================================
 namespace	prs
 {
 //====< Functions >=============================================================
-	std::string		parse(std::string value, std::string sValue);
-	int				parse(int value, std::string sValue);
-	double			parse(double value, std::string sValue);
+	std::string   parse(std::string value, std::string sValue);
+	int           parse(int value, std::string sValue);
+	double        parse(double value, std::string sValue);
 
-	std::string		trim(std::string str);
-	std::string		getNextLine(std::istream & stream);
+	std::string   trim(std::string str);
+	std::string   getNextLine(std::istream & stream);
 
 //====< KeyValueParser class >==================================================
 	template <class p1, class p2, char sep = '|'>
@@ -60,10 +60,10 @@ namespace	prs
 			KeyValueParser(std::string fileName);
 			~KeyValueParser(void);
 
-			std::map<p1, p2>	parseFile(void);
-			std::pair<p1, p2>	parseNextLine(void);
-			std::string			skipLine(void);
-			bool				eof(void);
+			std::map<p1, p2>  parseFile(void);
+			std::pair<p1, p2> parseNextLine(void);
+			std::string       skipLine(void);
+			bool              eof(void);
 	};
 
 # include "KeyValueParser.tpp"

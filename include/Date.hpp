@@ -5,7 +5,7 @@
 //  ⢀⠔⠉⠀⠊⠿⠿⣿⠂⠠⠢⣤⠤⣤⣼⣿⣶⣶⣤⣝⣻⣷⣦⣍⡻⣿⣿⣿⣿⡀                                              
 //  ⢾⣾⣆⣤⣤⣄⡀⠀⠀⠀⠀⠀⠀⠀⠉⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇                                              
 //  ⠀⠈⢋⢹⠋⠉⠙⢦⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇       Created: 2024/04/03 17:30:49 by oezzaou
-//  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/02/26 17:38:47 by oezzaou
+//  ⠀⠀⠀⠑⠀⠀⠀⠈⡇⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠇       Updated: 2025/03/02 09:03:42 by oezzaou
 //  ⠀⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⢀⣾⣿⣿⠿⠟⠛⠋⠛⢿⣿⣿⠻⣿⣿⣿⣿⡿⠀                                              
 //  ⠀⠀⠀⠀⠀⠀⠀⢀⠇⠀⢠⣿⣟⣭⣤⣶⣦⣄⡀⠀⠀⠈⠻⠀⠘⣿⣿⣿⠇⠀                                              
 //  ⠀⠀⠀⠀⠀⠱⠤⠊⠀⢀⣿⡿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠘⣿⠏⠀⠀                             𓆩♕𓆪      
@@ -32,7 +32,7 @@ typedef enum	cmp
 	GREATER,
 	LESS,
 	EQUAL
-}				Cmp;
+}             Cmp;
 
 //====<[ Struct: Date ]>====================================
 struct	Date
@@ -49,21 +49,14 @@ struct	Date
 namespace prs
 {
 
-	std::string	trim(std::string str);
-
-	Date		parseDate(std::string sDate);
-	
-	bool		isValidDate(Date date);
-	
-	bool		isValidDate(std::string sDate);
-	
-	Date		getCurrentDate(void);
-	
-	int			dateCmp(Date d1, Date d2);
-
-	t_ld		getTimeReference(void);
-
-	t_ld		getTimeToReference(t_ld reference);
+	std::string trim(std::string str);
+	Date        parseDate(std::string sDate);
+	bool		    isValidDate(Date date);
+	bool		    isValidDate(std::string sDate);
+	Date		    getCurrentDate(void);
+	int			    dateCmp(Date d1, Date d2);
+	t_ld		    getTimeReference(void);
+	t_ld		    getTimeToReference(t_ld reference);
 };
 
 #endif /*__DATE_HPP__*/
