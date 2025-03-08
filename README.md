@@ -83,7 +83,8 @@ To compile the **static** version of the library, run:
 ```sh
 make
 ``````
-* Or 
+
+Or 
 
 ```sh
 make static
