@@ -1,4 +1,4 @@
-# Libprs: Lib parser #
+# Libprs - A Lightweight C++ Parsing Library #
 **Libprs** is a small parsing library that I created during my 1337 cursus.
 It contains the following classes and functions:
 
@@ -6,7 +6,7 @@ It contains the following classes and functions:
 - `FSM`: Detects a string's type among [`CHAR`, `INT`, `OPERATOR`, `DOUBLE`, `FLOAT`, `STRING`].
   - **Functions :**
     - `static int	getNextState(int prv, char input)`; (Private | Static)  
-    - `static int	detectType(std::string str)`;       (Public | Static)  
+    - `static int	detectType(std::string str)`; (Public | Static)  
 <br>
 - `KeyValueParser`: Parses files with a **key-value** format.
   - **Attributes :**
@@ -94,5 +94,4 @@ make clean
 ```bash
 make fclean
 ```
-
 ---
