@@ -99,13 +99,13 @@ To compile your program with `libprs.a`, use one of the following methods:
 
 #### - Direct Linking ####
 ```bash
-cc -Wall -Wextra -Werror -Iinclude test.cpp libprs.a -o foo 
+c++ -Wall -Wextra -Werror -Iinclude test.cpp libprs.a -o foo 
 ```
 Or
 
 #### - Using the Library Flag ####
 ```bash
-cc -Wall -Wextra -Werror -Iinclude test.cpp -L. -lprs -o foo
+c++ -Wall -Wextra -Werror -Iinclude test.cpp -L. -lprs -o foo
 ```
 
 > NOTE  
