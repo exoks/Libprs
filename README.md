@@ -5,25 +5,25 @@ It contains the following classes and functions:
 ## **Available Classes & Structs** ## 
 1. `FSM`: Detects a string's type among [`CHAR`, `INT`, `OPERATOR`, `DOUBLE`, `FLOAT`, `STRING`].
   - **Functions :**
-    - `static int	getNextState(int prv, char input)`; (Private | Static)
+    - `static int`	`getNextState(int prv, char input)`; (Private | Static)
 
-    - `static int	detectType(std::string str)`; (Public | Static) 
+    - `static int`	`detectType(std::string str)`; (Public | Static) 
 
 ---
 
 2. `KeyValueParser`: Parses files with a **key-value** format.
     - **Attributes :**
-      - `std::string  fileName`;    (Private) 
+      - `std::string`  `fileName`;    (Private) 
 
-      - `std::fstream  fileStream`; (Public)
+      - `std::fstream`  `fileStream`; (Public)
     - **Functions :**
-      - `std::map<p1, p2>  parseFile(void)`;  
+      - `std::map<p1, p2>`  `parseFile(void)`;  
 
-      - `std::pair<p1, p2> parseNextLine(void)`;  
+      - `std::pair<p1, p2>` `parseNextLine(void)`;  
 
-      - `std::string       skipLine(void)`;  
+      - `std::string`       `skipLine(void)`;  
 
-      - `bool              eof(void)`;
+      - `bool`              `eof(void)`;
 
 ---
 
@@ -33,47 +33,47 @@ It contains the following classes and functions:
 
       - `int  ac`;    (Private)  
     - **Functions :**  
-      - `Container	parseArgs(void)`  
+      - `Container`	`parseArgs(void)`  
 
 ---
 
 - `Exception`: A custom exception class, very useful for debugging.
     - **Attributes :**
-      - `std::string	msg`; (Protected)
+      - `std::string`	`msg`; (Protected)
     - **Functions :**  
-      - `virtual const char	*what() const throw()`;  
+      - `virtual const char`	`*what() const throw()`;  
 
 ---
 
 - `Date`: Handles date parsing and manipulation. (Struct)
-  - `std::string  trim(std::string str)`;  
+  - `std::string`  `trim(std::string str)`;  
 
-  - `Date         parseDate(std::string sDate)`;  
+  - `Date`         `parseDate(std::string sDate)`;  
 
-  - `bool         isValidDate(Date date)`;  
+  - `bool`         `isValidDate(Date date)`;  
 
-  - `bool         isValidDate(std::string sDate)`;  
+  - `bool`         `isValidDate(std::string sDate)`;  
 
-  - `Date         getCurrentDate(void)`;  
+  - `Date`         `getCurrentDate(void)`;  
 
-  - `int          dateCmp(Date d1, Date d2)`;  
+  - `int`          `dateCmp(Date d1, Date d2)`;  
 
-  - `t_ld         getTimeReference(void)`;  
+  - `t_ld`         `getTimeReference(void)`;  
 
-  - `t_ld         getTimeToReference(t_ld reference)`;  
+  - `t_ld`         `getTimeToReference(t_ld reference)`;  
 
 ---
 
 - **Other Functions**  
-  - `std::string   parse(std::string value, std::string sValue)`;  
+  - `std::string`   `parse(std::string value, std::string sValue)`;  
 
-  - `int           parse(int value, std::string sValue)`;  
+  - `int`           `parse(int value, std::string sValue)`;  
 
-  - `double        parse(double value, std::string sValue)`;  
+  - `double`        `parse(double value, std::string sValue)`;  
 
-  - `std::string   trim(std::string str)`;  
+  - `std::string`   `trim(std::string str)`;  
 
-  - `std::string   getNextLine(std::istream & stream)`;  
+  - `std::string`   `getNextLine(std::istream & stream)`;  
 
 ## **Building the Library** ##
 **Libprs** supports both **static** and **shared** library generation through the provided **Makefile**.
